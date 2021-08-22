@@ -1,0 +1,24 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import urllib.request
+import urllib.parse
+
+DRIVER_PATH = '/path/to/chromedriver'
+
+options = Options()
+options.headless = True
+options.add_argument("--window-size=1920,1200")
+driver = webdriver.Chrome(options=options, executable_path=r'E:\Downloads\chromedriver_win32\chromedriver')
+driver.get("https://www.youtube.com/results?search_query=iphone+battery+repair")
+
+# Scroll down
+for t in range(1, 1000):
+	driver.execute_script("scrollBy(0,+500)")
+
+titles = driver.find_elements_by_xpath("//*[@id="video-title"]/yt-formatted-string")
+views = driver.find_elements_by_xpath('//*[@id="metadata-line"]/span[1]')
+
+print(len(titles))
+
+for item in titles:
+    print(titles)
